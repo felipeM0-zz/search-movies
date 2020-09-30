@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import api from "../../services/api";
 import Lottie from "react-lottie";
-import Searching from "../../images/JSON/searching.json";
-import Waiting from "../../images/JSON/waiting.json";
 import NotFound from "../../images/JSON/not-found.json";
+import LoadingCard from "../../components/LoadingCard";
 
 import "./styles.css";
 
@@ -52,12 +51,28 @@ const Main = () => {
     }
   };
 
+  useEffect(() => {
+    let elemLeft = document.getElementById("dv-search");
+    let elemRight = document.getElementById("dv-result");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY === 0) {
+        elemRight.classList.remove("notop");
+        elemLeft.classList.remove("notop");
+      } else {
+        elemRight.classList.add("notop");
+        elemLeft.classList.add("notop");
+      }
+    });
+  }, []);
+
   return (
     <div className="dv-main">
-      <div className="dv-search">
+      <div id="dv-search" className="dv-search">
         <form onSubmit={loadMovies} className="form-search">
-          <div>Pesquisar</div>
-          <div>O que deseja buscar?</div>
+          <div>
+            <div>Pesquisar</div>
+            <div>O que deseja buscar?</div>
+          </div>
           <div id="typeGroup">
             <button
               value="movie"
@@ -92,10 +107,10 @@ const Main = () => {
           </button>
         </form>
       </div>
-      <div className="dv-result">
+      <div id="dv-result" className="dv-result">
         {!notFound && results.length <= 0 && (
           <div>
-            {!searching && (
+            {/* {!searching && (
               <div className="dv-waiting">
                 <h2>Use as opções para buscar o que deseja</h2>
                 <Lottie
@@ -111,22 +126,11 @@ const Main = () => {
                   width={250}
                 />
               </div>
-            )}
-            {searching && (
+            )} */}
+            {!searching && (
               <div className="dv-searching">
                 <h2>Buscando...</h2>
-                <Lottie
-                  options={{
-                    loop: true,
-                    autoplay: true,
-                    animationData: Searching,
-                    rendererSettings: {
-                      preserveAspectRatio: "xMidYMid slice",
-                    },
-                  }}
-                  height={250}
-                  width={250}
-                />
+                <LoadingCard />
               </div>
             )}
           </div>

@@ -1,0 +1,33 @@
+.dv-loading {
+  display: flex;
+  float: left;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ph-item {
+  margin: 0 10px 20px 10px;
+  width: 23%;
+  transition: .3s;
+}
+
+@media only screen and (max-width: 1329px) {
+  .ph-item {
+    width: 31%;
+  }
+}
+
+@media only screen and (max-width: 1186px) {
+  .ph-item {
+    width: 47%;
+  }
+}
+
+@media only screen and (max-width: 996px) {
+  .ph-item {
+    width: 100%;
+  }
+}
