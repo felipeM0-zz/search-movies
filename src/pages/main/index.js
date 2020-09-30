@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+// EXTERNAL SERVICES
 import api from "../../services/api";
-import Lottie from "react-lottie";
-import NotFound from "../../images/JSON/not-found.json";
+// EXTERNAL COMPONENTS
 import LoadingCard from "../../components/LoadingCard";
-
+import WaitAction from "../../components/WaitAction";
+import NothingFd from "../../components/NothingFd";
+// EXTERNAL STYLES
 import "./styles.css";
 
 const Main = () => {
@@ -110,49 +112,12 @@ const Main = () => {
       <div id="dv-result" className="dv-result">
         {!notFound && results.length <= 0 && (
           <div>
-            {/* {!searching && (
-              <div className="dv-waiting">
-                <h2>Use as opções para buscar o que deseja</h2>
-                <Lottie
-                  options={{
-                    loop: true,
-                    autoplay: true,
-                    animationData: Waiting,
-                    rendererSettings: {
-                      preserveAspectRatio: "xMidYMid slice",
-                    },
-                  }}
-                  height={250}
-                  width={250}
-                />
-              </div>
-            )} */}
-            {!searching && (
-              <div className="dv-searching">
-                <h2>Buscando...</h2>
-                <LoadingCard />
-              </div>
-            )}
+            {!searching && <WaitAction />}
+            {searching && <LoadingCard />}
           </div>
         )}
 
-        {notFound && results.length <= 0 && (
-          <div className="dv-not-found">
-            <h2>Nada encontrado!</h2>
-            <Lottie
-              options={{
-                loop: true,
-                autoplay: true,
-                animationData: NotFound,
-                rendererSettings: {
-                  preserveAspectRatio: "xMidYMid slice",
-                },
-              }}
-              height={250}
-              width={250}
-            />
-          </div>
-        )}
+        {notFound && results.length <= 0 && <NothingFd />}
 
         {!notFound && results.length > 0 && (
           <div className="movies-list">

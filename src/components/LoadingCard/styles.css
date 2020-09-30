@@ -1,3 +1,16 @@
+.dv-searching {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.dv-searching > h2 {
+  margin-bottom: 42px;
+}
+
 .dv-loading {
   display: flex;
   float: left;
@@ -11,7 +24,11 @@
 .ph-item {
   margin: 0 10px 20px 10px;
   width: 23%;
-  transition: .3s;
+  transition: 0.3s;
+}
+
+.ph-row div {
+  background-color: #da552f85;
 }
 
 @media only screen and (max-width: 1329px) {
@@ -29,5 +46,11 @@
 @media only screen and (max-width: 996px) {
   .ph-item {
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .dv-searching > h2 {
+    margin-bottom: 20px;
   }
 }

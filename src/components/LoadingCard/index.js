@@ -24,7 +24,12 @@ const LoadingCard = () => {
     }
   }, []);
 
-  return <div id="dv-loading" className="dv-loading"></div>;
+  return (
+    <div className="dv-searching">
+      <h2>Buscando...</h2>
+      <div id="dv-loading" className="dv-loading"></div>
+    </div>
+  );
 };
 
 export default LoadingCard;
