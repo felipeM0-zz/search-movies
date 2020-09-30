@@ -102,16 +102,37 @@
 .dv-result {
   padding: 30px 15px;
   margin-left: 300px;
+  flex: 1;
 }
 
-.movies-list {
+.dv-searching,
+.dv-waiting,
+.dv-not-found {
+  display: flex;
   flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .movies-list > h2 {
   text-transform: uppercase;
   font-size: 25px;
   margin-bottom: 15px;
+}
+.movies-list > div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.movies-list > div > div {
+  border: 2px solid rgba(168, 168, 168, 0.5);
+  width: 250px;
+  height: 100px;
+  padding: 20px;
+  margin: 10px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -122,12 +143,11 @@
     width: 100%;
     position: relative;
     border: none;
+    border-bottom: 1px solid rgba(169, 169, 169, 0.5);
   }
   .dv-result {
     margin: 0;
-  }
-  .dv-result > div > h2 {
-    text-align: center;
+    padding: 15px 15px;
   }
   .form-search > div:nth-child(3) > button {
     flex: 1;

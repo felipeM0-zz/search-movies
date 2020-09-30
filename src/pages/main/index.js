@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import "materialize-css";
 import api from "../../services/api";
+import Lottie from "react-lottie";
+import Searching from "../../images/JSON/searching.json";
+import Waiting from "../../images/JSON/waiting.json";
+import NotFound from "../../images/JSON/not-found.json";
 
 import "./styles.css";
 
@@ -92,14 +95,58 @@ const Main = () => {
       <div className="dv-result">
         {!notFound && results.length <= 0 && (
           <div>
-            {!searching && <h2>Busque ao lado por filmes e séries</h2>}
-            {searching && <h2>Buscando...</h2>}
+            {!searching && (
+              <div className="dv-waiting">
+                <h2>Use as opções para buscar o que deseja</h2>
+                <Lottie
+                  options={{
+                    loop: true,
+                    autoplay: true,
+                    animationData: Waiting,
+                    rendererSettings: {
+                      preserveAspectRatio: "xMidYMid slice",
+                    },
+                  }}
+                  height={250}
+                  width={250}
+                />
+              </div>
+            )}
+            {searching && (
+              <div className="dv-searching">
+                <h2>Buscando...</h2>
+                <Lottie
+                  options={{
+                    loop: true,
+                    autoplay: true,
+                    animationData: Searching,
+                    rendererSettings: {
+                      preserveAspectRatio: "xMidYMid slice",
+                    },
+                  }}
+                  height={250}
+                  width={250}
+                />
+              </div>
+            )}
           </div>
         )}
 
         {notFound && results.length <= 0 && (
-          <div>
-            <h2>Nada encontrado</h2>
+          <div className="dv-not-found">
+            <h2>Nada encontrado!</h2>
+            <Lottie
+              options={{
+                loop: true,
+                autoplay: true,
+                animationData: NotFound,
+                rendererSettings: {
+                  preserveAspectRatio: "xMidYMid slice",
+                },
+              }}
+              height={250}
+              width={250}
+            />
           </div>
         )}
 
@@ -110,7 +157,8 @@ const Main = () => {
             <div>
               {results.map((movies) => (
                 <div key={movies.imdbID}>
-                  <h2>{movies.Title}</h2>
+                  <p>{movies.Title}</p>
+                  <p>{movies.Year}</p>
                 </div>
               ))}
             </div>
