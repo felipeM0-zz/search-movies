@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "materialize-css";
 import api from "../../services/api";
 
@@ -8,13 +8,25 @@ const Main = () => {
   const [results, setResults] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
   const [nameSearch, setNameSearch] = useState("");
+  const [searching, setSearching] = useState(false);
+  const [notFound, setNotFound] = useState(false);
+  const [resultCount, setResultCount] = useState("");
 
-  const loadMovies = async () => {
-    const response = await api.get("/?&apikey=ad055d30&s=avengers&page=1");
+  const loadMovies = async (name, type) => {
+    setResults([]);
+    setNotFound(false);
+    setSearching(true);
+    const response = await api.get(
+      "/?&apikey=ad055d30&s=" + name + "&type=" + type + "&page=1"
+    );
     if (response.data.Response === "True") {
       setResults(response.data.Search);
+      setResultCount(response.data.totalResults);
+      setSearching(false);
     } else {
-      setResults([]);
+      setNotFound(true);
+      setResultCount("");
+      setSearching(false);
     }
   };
 
@@ -29,21 +41,17 @@ const Main = () => {
     }
   };
 
-  useEffect(() => {
-    loadMovies();
-  }, []);
-
   return (
     <div className="dv-main">
       <div className="dv-search">
-        <form className="form-search">
+        <div className="form-search">
           <div>Pesquisar</div>
           <div>O que deseja buscar?</div>
           <div id="typeGroup">
             <button
-              value="movies"
+              value="movie"
               type="button"
-              onClick={() => selectType("movies")}
+              onClick={() => selectType("movie")}
             >
               Filmes
             </button>
@@ -53,13 +61,6 @@ const Main = () => {
               onClick={() => selectType("series")}
             >
               Séries
-            </button>
-            <button
-              value="episode"
-              type="button"
-              onClick={() => selectType("episode")}
-            >
-              Episódio
             </button>
           </div>
 
@@ -73,25 +74,42 @@ const Main = () => {
           />
 
           <button
-            disabled={selectedOption === "" || nameSearch === ""}
+            disabled={selectedOption === "" || nameSearch === "" || searching}
+            onClick={() => loadMovies(nameSearch.trim(), selectedOption)}
             type="submit"
           >
-            Buscar
+            {searching ? "Buscando..." : "Buscar"}
           </button>
-        </form>
+        </div>
       </div>
-      {results.length > 0 && (
-        <div className="movies-list">
-          {results.map((movies) => (
-            <h2 key={movies.imdbID}>{movies.Title}</h2>
-          ))}
-        </div>
-      )}
-      {results.length <= 0 && (
-        <div>
-          <h2>Nada encontrado</h2>
-        </div>
-      )}
+      <div className="dv-result">
+        {!notFound && results.length <= 0 && (
+          <div>
+            {!searching && <h2>Busque ao lado por filmes e séries</h2>}
+            {searching && <h2>Buscando...</h2>}
+          </div>
+        )}
+
+        {notFound && results.length <= 0 && (
+          <div>
+            <h2>Nada encontrado</h2>
+          </div>
+        )}
+
+        {!notFound && results.length > 0 && (
+          <div className="movies-list">
+            <h2>Resultados da busca ({resultCount} resultados)</h2>
+
+            <div>
+              {results.map((movies) => (
+                <div key={movies.imdbID}>
+                  <h2>{movies.Title}</h2>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

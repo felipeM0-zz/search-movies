@@ -9,4 +9,13 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #fafafa;
   color: #393d40;
+  min-width: 320px;
+}
+
+@media only screen and (min-width: 1440px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
