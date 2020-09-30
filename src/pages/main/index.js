@@ -12,13 +12,21 @@ const Main = () => {
   const [notFound, setNotFound] = useState(false);
   const [resultCount, setResultCount] = useState("");
 
-  const loadMovies = async (name, type) => {
+  const loadMovies = async (e) => {
+    e.preventDefault();
+
     setResults([]);
     setNotFound(false);
     setSearching(true);
+
     const response = await api.get(
-      "/?&apikey=ad055d30&s=" + name + "&type=" + type + "&page=1"
+      "/?&apikey=ad055d30&s=" +
+        nameSearch.trim() +
+        "&type=" +
+        selectedOption +
+        "&page=1"
     );
+
     if (response.data.Response === "True") {
       setResults(response.data.Search);
       setResultCount(response.data.totalResults);
@@ -44,7 +52,7 @@ const Main = () => {
   return (
     <div className="dv-main">
       <div className="dv-search">
-        <div className="form-search">
+        <form onSubmit={loadMovies} className="form-search">
           <div>Pesquisar</div>
           <div>O que deseja buscar?</div>
           <div id="typeGroup">
@@ -75,12 +83,11 @@ const Main = () => {
 
           <button
             disabled={selectedOption === "" || nameSearch === "" || searching}
-            onClick={() => loadMovies(nameSearch.trim(), selectedOption)}
             type="submit"
           >
             {searching ? "Buscando..." : "Buscar"}
           </button>
-        </div>
+        </form>
       </div>
       <div className="dv-result">
         {!notFound && results.length <= 0 && (
