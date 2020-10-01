@@ -1,0 +1,18 @@
+.dv-pagination {
+  margin-top: 10px;
+  border-top: 1px solid rgba(169, 169, 169, 0.5);
+  padding: 10px 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.dv-pagination > div button {
+  border: none;
+  padding: 2px 10px;
+  height: 25px;
+}
+
+.dv-pagination > div span {
+  margin: 0 5px;
+}

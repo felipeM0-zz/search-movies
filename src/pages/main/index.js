@@ -5,6 +5,8 @@ import api from "../../services/api";
 import LoadingCard from "../../components/LoadingCard";
 import WaitAction from "../../components/WaitAction";
 import NothingFd from "../../components/NothingFd";
+import ItemsList from "../../components/ItemsList";
+import Pagination from "../../components/Pagination";
 // EXTERNAL STYLES
 import "./styles.css";
 
@@ -12,29 +14,38 @@ const Main = () => {
   const [results, setResults] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
   const [nameSearch, setNameSearch] = useState("");
+  const [lastSearch, setLastSearch] = useState();
+  const [lastType, setLastType] = useState();
   const [searching, setSearching] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [resultCount, setResultCount] = useState("");
+  const [page, setPage] = useState(1);
 
   const loadMovies = async (e) => {
     e.preventDefault();
-
     setResults([]);
     setNotFound(false);
     setSearching(true);
+
+    if (lastSearch !== nameSearch.trim() || lastType !== selectedOption) {
+      setPage(1);
+    }
 
     const response = await api.get(
       "/?&apikey=ad055d30&s=" +
         nameSearch.trim() +
         "&type=" +
         selectedOption +
-        "&page=1"
+        "&page=" +
+        page
     );
 
     if (response.data.Response === "True") {
       setResults(response.data.Search);
       setResultCount(response.data.totalResults);
       setSearching(false);
+      setLastSearch(nameSearch.trim());
+      setLastType(selectedOption);
     } else {
       setNotFound(true);
       setResultCount("");
@@ -104,10 +115,27 @@ const Main = () => {
           <button
             disabled={selectedOption === "" || nameSearch === "" || searching}
             type="submit"
+            id="buttonSearch"
           >
             {searching ? "Buscando..." : "Buscar"}
           </button>
         </form>
+        <Pagination
+          prevPage={() => {
+            setPage(page - 1);
+            document.getElementById("buttonSearch").click();
+          }}
+          nextPage={() => {
+            setPage(page + 1);
+            document.getElementById("buttonSearch").click();
+          }}
+          page={page}
+          resultCount={resultCount}
+          lastSearch={lastSearch}
+          lastType={lastType}
+          actualSeach={nameSearch.trim()}
+          actualType={selectedOption}
+        />
       </div>
       <div id="dv-result" className="dv-result">
         {!notFound && results.length <= 0 && (
@@ -120,20 +148,7 @@ const Main = () => {
         {notFound && results.length <= 0 && <NothingFd />}
 
         {!notFound && results.length > 0 && (
-          <div className="movies-list">
-            <div>
-              <h2>Resultados da busca</h2>
-              <span>{resultCount} resultados</span>
-            </div>
-            <div>
-              {results.map((movies) => (
-                <div key={movies.imdbID}>
-                  <p>{movies.Title}</p>
-                  <p>{movies.Year}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <ItemsList resultCount={resultCount} results={results} />
         )}
       </div>
     </div>

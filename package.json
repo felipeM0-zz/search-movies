@@ -11,6 +11,7 @@
     "placeholder-loading": "^0.2.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-lazyload": "^3.0.0",
     "react-lottie": "^1.2.3",
     "react-scripts": "3.4.3"
   },
