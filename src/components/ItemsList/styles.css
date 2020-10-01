@@ -11,19 +11,44 @@
   margin-bottom: 5px;
   text-align: center;
 }
-.movies-list > div:nth-child(1) > span {
+.movies-list > div:nth-child(1) > div {
   margin-bottom: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
   background-color: #da552f;
   color: #fff;
-  font-weight: bold;
   padding: 4px 12px;
   border-radius: 2px;
+}
+.movies-list > div:nth-child(1) > div > span {
+  font-weight: bold;
   font-size: 14px;
+}
+.movies-list > div:nth-child(1) > div > svg {
+  margin-left: 9px;
+  padding: 3px;
+  border-radius: 14px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.movies-list > div:nth-child(1) > div > svg:hover {
+  background: #33333330;
+}
+.movies-list > div:nth-child(1) > div > svg:active {
+  background: #33333350;
+  transition: all 0.1s;
+  transform: scale(1.05, 1.05);
 }
 .movies-list > div:nth-child(2) {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-bottom: 16px;
 }
 
 .movies-list > div:nth-child(2) > div {
@@ -128,5 +153,11 @@
 @media only screen and (max-width: 996px) {
   .movies-list > div:nth-child(2) > div {
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .movies-list > div:nth-child(2) {
+    margin-bottom: 30px;
   }
 }

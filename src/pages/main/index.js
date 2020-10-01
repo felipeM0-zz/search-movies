@@ -6,7 +6,6 @@ import LoadingCard from "../../components/LoadingCard";
 import WaitAction from "../../components/WaitAction";
 import NothingFd from "../../components/NothingFd";
 import ItemsList from "../../components/ItemsList";
-import Pagination from "../../components/Pagination";
 // EXTERNAL STYLES
 import "./styles.css";
 
@@ -64,6 +63,22 @@ const Main = () => {
     }
   };
 
+  const ClearAll = () => {
+    let elemType = document.getElementById("typeGroup");
+    for (let i = 0; i < 2; i++) {
+      elemType.children[i].classList.remove("selected");
+    }
+
+    setNameSearch("");
+    setLastSearch("");
+    setSelectedOption("");
+    setLastType("");
+    setResults([]);
+    setNotFound(false);
+    setResultCount("");
+    setPage(1);
+  };
+
   useEffect(() => {
     let elemLeft = document.getElementById("dv-search");
     let elemRight = document.getElementById("dv-result");
@@ -81,7 +96,7 @@ const Main = () => {
   return (
     <div className="dv-main">
       <div id="dv-search" className="dv-search">
-        <form onSubmit={loadMovies} className="form-search">
+        <form onSubmit={loadMovies} id="form-search" className="form-search">
           <div>
             <div>Pesquisar</div>
             <div>O que deseja buscar?</div>
@@ -106,6 +121,7 @@ const Main = () => {
           <input
             disabled={selectedOption === ""}
             type="text"
+            id="btnSubmit"
             value={nameSearch}
             onChange={(e) => setNameSearch(e.target.value)}
             placeholder="ex: back to the future"
@@ -115,27 +131,12 @@ const Main = () => {
           <button
             disabled={selectedOption === "" || nameSearch === "" || searching}
             type="submit"
+            className="buttonSearch"
             id="buttonSearch"
           >
             {searching ? "Buscando..." : "Buscar"}
           </button>
         </form>
-        <Pagination
-          prevPage={() => {
-            setPage(page - 1);
-            document.getElementById("buttonSearch").click();
-          }}
-          nextPage={() => {
-            setPage(page + 1);
-            document.getElementById("buttonSearch").click();
-          }}
-          page={page}
-          resultCount={resultCount}
-          lastSearch={lastSearch}
-          lastType={lastType}
-          actualSeach={nameSearch.trim()}
-          actualType={selectedOption}
-        />
       </div>
       <div id="dv-result" className="dv-result">
         {!notFound && results.length <= 0 && (
@@ -148,7 +149,24 @@ const Main = () => {
         {notFound && results.length <= 0 && <NothingFd />}
 
         {!notFound && results.length > 0 && (
-          <ItemsList resultCount={resultCount} results={results} />
+          <ItemsList
+            next={() => {
+              setPage(page + 1);
+              document.getElementById("buttonSearch").click();
+            }}
+            prev={() => {
+              setPage(page - 1);
+              document.getElementById("buttonSearch").click();
+            }}
+            clear={() => ClearAll()}
+            page={page}
+            resultCount={resultCount}
+            lastSearch={lastSearch}
+            lastType={lastType}
+            actualSeach={nameSearch.trim()}
+            actualType={selectedOption}
+            results={results}
+          />
         )}
       </div>
     </div>

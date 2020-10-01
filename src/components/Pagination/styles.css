@@ -1,18 +1,58 @@
 .dv-pagination {
-  margin-top: 10px;
-  border-top: 1px solid rgba(169, 169, 169, 0.5);
-  padding: 10px 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  position: fixed;
+  bottom: 15px;
+  right: 25px;
 }
 
-.dv-pagination > div button {
+.dv-pagination > div {
+  border: 1px solid #99999950;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+.dv-pagination > div button.next,
+.dv-pagination > div button.prev {
   border: none;
-  padding: 2px 10px;
+  padding: 2px 7px;
   height: 25px;
+  cursor: pointer;
+  background-color: #da542fb2;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.dv-pagination > div button:hover {
+  background-color: #da552f;
+}
+
+.dv-pagination > div button:active {
+  transition: all 0.1s;
+  transform: scale(1.1, 1.1);
+}
+
+.dv-pagination > div button.next {
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.dv-pagination > div button.prev {
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
 }
 
 .dv-pagination > div span {
   margin: 0 5px;
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 768px) {
+  .dv-pagination {
+    width: 100%;
+    right: 0;
+    justify-content: center;
+  }
 }

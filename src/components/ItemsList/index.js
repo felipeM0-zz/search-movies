@@ -1,14 +1,26 @@
 import React from "react";
 import LazyLoad from "react-lazyload";
 
+import Pagination from "../Pagination";
+import LayersClear from "@material-ui/icons/LayersClearOutlined";
+import Tooltip from "@material-ui/core/Tooltip";
+
 import "./styles.css";
 
 const itemsList = (props) => {
+  const math = Math.ceil(props.resultCount / 10);
+  const page = parseInt(props.page);
+
   return (
     <div className="movies-list">
       <div>
         <h2>Resultados da busca</h2>
-        <span>{props.resultCount} resultados</span>
+        <div>
+          <span>{props.resultCount} resultados</span>
+          <Tooltip arrow title="Descartar">
+            <LayersClear onClick={() => props.clear()} />
+          </Tooltip>
+        </div>
       </div>
       <div>
         {props.results.map((movies) => (
@@ -29,6 +41,16 @@ const itemsList = (props) => {
           </div>
         ))}
       </div>
+      {props.lastSearch === props.actualSeach &&
+        props.lastType === props.actualType &&
+        math > 1 && (
+          <Pagination
+            prevPage={() => props.prev()}
+            nextPage={() => props.next()}
+            page={page}
+            math={math}
+          />
+        )}
     </div>
   );
 };
