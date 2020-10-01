@@ -121,8 +121,10 @@ const Main = () => {
 
         {!notFound && results.length > 0 && (
           <div className="movies-list">
-            <h2>Resultados da busca ({resultCount} resultados)</h2>
-
+            <div>
+              <h2>Resultados da busca</h2>
+              <span>{resultCount} resultados</span>
+            </div>
             <div>
               {results.map((movies) => (
                 <div key={movies.imdbID}>

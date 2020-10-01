@@ -125,23 +125,68 @@
   margin: 0;
 }
 
-.movies-list > h2 {
+.movies-list > div:nth-child(1) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.movies-list > div:nth-child(1) > h2 {
   text-transform: uppercase;
   font-size: 25px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+  text-align: center;
 }
-.movies-list > div {
+.movies-list > div:nth-child(1) > span {
+  margin-bottom: 9px;
+  background-color: #da552f;
+  color: #fff;
+  font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 2px;
+  font-size: 14px;
+}
+.movies-list > div:nth-child(2) {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.movies-list > div > div {
-  border: 2px solid rgba(168, 168, 168, 0.5);
-  width: 250px;
-  height: 100px;
+.movies-list > div:nth-child(2) > div {
+  border: 1px solid rgb(230, 230, 230);
+  width: 23%;
+  height: 140px;
   padding: 20px;
   margin: 10px;
+  background-color: #fff;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.movies-list > div:nth-child(2) > div:hover {
+  transform: scale(1.02, 1.02);
+  border: 1px solid #da552f;
+  box-shadow: 4px 4px #da552f;
+}
+
+@media only screen and (max-width: 1329px) {
+  .movies-list > div:nth-child(2) > div {
+    width: 31%;
+  }
+}
+
+@media only screen and (max-width: 1186px) {
+  .movies-list > div:nth-child(2) > div {
+    width: 47%;
+  }
+}
+
+@media only screen and (max-width: 996px) {
+  .movies-list > div:nth-child(2) > div {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 768px) {
