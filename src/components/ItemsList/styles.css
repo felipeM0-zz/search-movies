@@ -134,6 +134,45 @@
   height: 100%;
 }
 
+.dv-buttons-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.dv-buttons-modal > button {
+  border: none;
+  padding: 5px 20px;
+  border-radius: 3px;
+  font-size: 15px;
+  color: #fff;
+  margin-right: 5px;
+  margin-left: 5px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.dv-buttons-modal > button:nth-child(1) {
+  background-color: #da552f;
+  border-bottom: 3px solid #9b3b21;
+}
+
+.dv-buttons-modal > button:nth-child(2) {
+  border: 2px solid #333;
+  color: #333;
+  background-color: #fff;
+}
+
+.dv-buttons-modal > button:nth-child(2):hover {
+  color: #fff;
+  background-color: #333;
+}
+.dv-buttons-modal > button:nth-child(1):active {
+  border: none;
+}
+
 @media only screen and (max-width: 1329px) {
   .movies-list > div:nth-child(2) > div {
     width: 31%;

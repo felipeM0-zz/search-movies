@@ -10,7 +10,7 @@ const Details = (props) => {
 
   const separateActors = (act) => {
     for (let i = 0; i < act.length; i++) {
-      let span = `<a href="https://pt.wikipedia.org/wiki/${act[i]}">${act[i]}</a>,&nbsp`;
+      let span = `<a target="_blank" href="https://pt.wikipedia.org/wiki/${act[i]}">${act[i]}</a>,&nbsp`;
       document.getElementById("actors").innerHTML += span;
     }
   };
