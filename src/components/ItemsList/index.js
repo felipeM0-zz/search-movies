@@ -2,7 +2,6 @@ import React from "react";
 import LazyLoad from "react-lazyload";
 import LayersClear from "@material-ui/icons/LayersClearOutlined";
 import Tooltip from "@material-ui/core/Tooltip";
-import { Link } from "react-router-dom";
 
 import Pagination from "../Pagination";
 
@@ -25,8 +24,8 @@ const itemsList = (props) => {
       </div>
       <div>
         {props.results.map((movies, index) => (
-          <Link
-            to={`/details/${movies.Type}/${movies.Title}/${movies.Year}/${movies.imdbID}`}
+          <div
+            onClick={() => props.details(movies.imdbID)}
             id={index}
             key={movies.imdbID}
           >
@@ -43,7 +42,7 @@ const itemsList = (props) => {
             <div>
               <p>{movies.Title}</p>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
       {props.lastSearch === props.actualSeach &&

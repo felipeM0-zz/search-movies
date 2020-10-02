@@ -6,6 +6,7 @@ import LoadingCard from "../../components/LoadingCard";
 import WaitAction from "../../components/WaitAction";
 import NothingFd from "../../components/NothingFd";
 import ItemsList from "../../components/ItemsList";
+import Details from "../../components/Details";
 // EXTERNAL STYLES
 import "./styles.css";
 
@@ -19,6 +20,8 @@ const Main = () => {
   const [notFound, setNotFound] = useState(false);
   const [resultCount, setResultCount] = useState("");
   const [page, setPage] = useState(1);
+  const [showDetails, setShowDetails] = useState(false);
+  const [detailsId, setDetailsId] = useState();
 
   const loadMovies = async (e) => {
     e.preventDefault();
@@ -139,33 +142,47 @@ const Main = () => {
         </form>
       </div>
       <div id="dv-result" className="dv-result">
-        {!notFound && results.length <= 0 && (
-          <div>
-            {!searching && <WaitAction />}
-            {searching && <LoadingCard />}
-          </div>
+        {!showDetails && (
+          <>
+            {!notFound && results.length <= 0 && (
+              <div>
+                {!searching && <WaitAction />}
+                {searching && <LoadingCard />}
+              </div>
+            )}
+
+            {notFound && results.length <= 0 && <NothingFd />}
+
+            {!notFound && results.length > 0 && (
+              <ItemsList
+                next={() => {
+                  setPage(page + 1);
+                  document.getElementById("buttonSearch").click();
+                }}
+                prev={() => {
+                  setPage(page - 1);
+                  document.getElementById("buttonSearch").click();
+                }}
+                clear={() => ClearAll()}
+                page={page}
+                resultCount={resultCount}
+                lastSearch={lastSearch}
+                lastType={lastType}
+                actualSeach={nameSearch.trim()}
+                actualType={selectedOption}
+                results={results}
+                details={(id) => {
+                  setDetailsId(id);
+                  setShowDetails(true);
+                }}
+              />
+            )}
+          </>
         )}
-
-        {notFound && results.length <= 0 && <NothingFd />}
-
-        {!notFound && results.length > 0 && (
-          <ItemsList
-            next={() => {
-              setPage(page + 1);
-              document.getElementById("buttonSearch").click();
-            }}
-            prev={() => {
-              setPage(page - 1);
-              document.getElementById("buttonSearch").click();
-            }}
-            clear={() => ClearAll()}
-            page={page}
-            resultCount={resultCount}
-            lastSearch={lastSearch}
-            lastType={lastType}
-            actualSeach={nameSearch.trim()}
-            actualType={selectedOption}
-            results={results}
+        {showDetails && (
+          <Details
+            returnBack={() => setShowDetails(false)}
+            detailsId={detailsId}
           />
         )}
       </div>

@@ -1,0 +1,53 @@
+.dv-geral > div:nth-child(1) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #da552f;
+  border-radius: 2px;
+  width: max-content;
+  cursor: pointer;
+  padding: 3px 10px 3px 5px;
+  transition: all 0.2s;
+  color: #da552f;
+  margin-bottom: 15px;
+}
+
+.dv-geral > div:nth-child(1):hover {
+  background-color: #da552f;
+  color: #fff;
+}
+
+.dv-geral > div:nth-child(1):active {
+  transition: all 0.1s;
+  transform: scale(1.05, 1.05);
+}
+
+.dv-geral > div:nth-child(1) > p {
+  font-size: 15px;
+  margin-left: 3px;
+}
+
+.dv-geral > div:nth-child(1) > svg {
+  font-size: 20;
+}
+
+.dv-geral > div:nth-child(3) {
+  display: flex;
+}
+
+.dv-geral > div:nth-child(3) > div {
+  flex: 1;
+  margin-left: 10px;
+  line-height: 24px;
+}
+
+.dv-geral > p {
+  font-size: 25px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.img-back {
+  height: 350px;
+}
