@@ -50,11 +50,11 @@
 .movies-list > div:nth-child(2) > div {
   border: 1px solid rgb(230, 230, 230);
   width: 23%;
-  height: 140px;
+  height: 120px;
   padding: 10px;
   margin: 10px;
   background-color: #fff;
-  border-radius: 2px;
+  border-radius: 7px;
   cursor: pointer;
   transition: all 0.2s;
   display: flex;
@@ -63,7 +63,7 @@
 .movies-list > div:nth-child(2) > div:hover {
   transform: scale(1.02, 1.02);
   border: 1px solid #da552f;
-  box-shadow: 4px 4px #da552f;
+  box-shadow: 2px 2px #da552f;
 }
 
 .movies-list > div:nth-child(2) > div:active {
@@ -84,7 +84,6 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin: 0 0 0 10px;
 }
 
 .movies-list > div:nth-child(2) > div > div:nth-child(2) p:nth-child(1) {
@@ -95,32 +94,41 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-align: center;
-  margin-bottom: 3px;
 }
 
 .movies-list > div:nth-child(2) > div > div:nth-child(1) img {
   height: 100%;
-  width: 100px;
   border-radius: 2px;
-  object-fit: cover;
+  object-fit: contain;
+  border: 1px solid #fff;
+  max-width: 68px;
 }
 
 .movies-list > div:nth-child(2) > div > div:nth-child(1) > p {
   position: absolute;
   bottom: 0;
-  right: 0;
-  font-size: 12px;
+  right: 15px;
+  font-size: 11px;
   background-color: #333;
   color: #fff;
-  padding: 3px 5px 3px 5px;
-  border-bottom-right-radius: 2px;
+  padding: 3px 7px 3px 7px;
   border-top-left-radius: 2px;
-  border-top: 1px solid #fff;
-  border-left: 1px solid #fff;
+  border-radius: 10px;
+  border: 1px solid #fff;
+}
+
+.movies-list
+  > div:nth-child(2)
+  > div:hover
+  > div:nth-child(1)
+  .lazyload-wrapper
+  img {
+  border: 2px solid #da552f;
 }
 
 .movies-list > div:nth-child(2) > div:hover > div:nth-child(1) > p {
   background-color: #da552f;
+  border: 1px solid #da552f;
 }
 
 .movies-list > div:nth-child(2) > div:hover > div:nth-child(2) p:nth-child(2) {

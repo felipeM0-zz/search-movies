@@ -118,6 +118,10 @@ const Main = () => {
     verifySearchElement();
   }, [detailsId, showDetails]);
 
+  useEffect(() => {
+    document.getElementById("buttonSearch").click();
+  }, [page]);
+
   return (
     <div className="dv-main">
       {showSearch && (
@@ -180,14 +184,8 @@ const Main = () => {
 
             {!notFound && results.length > 0 && (
               <ItemsList
-                next={() => {
-                  setPage(page + 1);
-                  document.getElementById("buttonSearch").click();
-                }}
-                prev={() => {
-                  setPage(page - 1);
-                  document.getElementById("buttonSearch").click();
-                }}
+                next={() => setPage(page + 1)}
+                prev={() => setPage(page - 1)}
                 clear={() => ClearAll()}
                 page={page}
                 resultCount={resultCount}
