@@ -199,7 +199,7 @@ const Main = () => {
                   setShowDetails(true);
                 }}
               />
-            )}
+              )}
           </>
         )}
         {showDetails && (
