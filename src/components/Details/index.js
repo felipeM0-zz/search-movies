@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import api from "../../services/api";
 
 import KeyboardBackspaceSharp from "@material-ui/icons/KeyboardBackspaceSharp";
+import EventIcon from "@material-ui/icons/Event";
+import MovieFilterIcon from "@material-ui/icons/MovieFilter";
+import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 
 import "./styles.css";
 
@@ -10,14 +14,14 @@ const Details = (props) => {
 
   const separateActors = (act) => {
     for (let i = 0; i < act.length; i++) {
-      let span = `<a target="_blank" href="https://pt.wikipedia.org/wiki/${act[i]}">${act[i]}</a>,&nbsp`;
-      document.getElementById("actors").innerHTML += span;
+      let span = `<a target="_blank" href="https://pt.wikipedia.org/wiki/${act[i]}">${act[i]}</a>`;
+      document.getElementById("actors").children[1].innerHTML += span;
     }
   };
 
   const returnList = () => {
     setDetails({});
-    document.getElementById("actors").innerHTML = "Atores: ";
+    document.getElementById("actors").children[1].innerHTML = "";
     props.returnBack();
   };
 
@@ -41,18 +45,33 @@ const Details = (props) => {
       <div>
         <img alt={details.Title} className="img-back" src={details.Poster} />
         <div>
-          <p>
-            <strong>Ano:</strong> {details.Year}
-          </p>
-          <p>
-            <strong>Gênero(s):</strong> {details.Genre}
-          </p>
-          <p>
-            <strong>Diretor(a):</strong> {details.Director}
-          </p>
-          <p id="actors">
-            <strong>Atores:</strong>{" "}
-          </p>
+          <div>
+            <strong>
+              <EventIcon />
+              Ano:
+            </strong>
+            <p>{details.Year}</p>
+          </div>
+          <div>
+            <strong>
+              <MovieFilterIcon />
+              Gênero(s):
+            </strong>
+            <p>{details.Genre}</p>
+          </div>
+          <div>
+            <strong>
+              <EmojiPeopleIcon /> Diretor(a):
+            </strong>
+            <p>{details.Director}</p>
+          </div>
+          <div id="actors">
+            <strong>
+              <SupervisedUserCircleIcon />
+              Atores:
+            </strong>
+            <div></div>
+          </div>
         </div>
       </div>
     </div>

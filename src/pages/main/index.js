@@ -22,6 +22,7 @@ const Main = () => {
   const [page, setPage] = useState(1);
   const [showDetails, setShowDetails] = useState(false);
   const [detailsId, setDetailsId] = useState();
+  const [showSearch, setShowSearch] = useState(true);
 
   const loadMovies = async (e) => {
     e.preventDefault();
@@ -82,65 +83,89 @@ const Main = () => {
     setPage(1);
   };
 
-  useEffect(() => {
+  const verifySearchElement = () => {
+    let elemDetail = document.getElementById("dv-result");
+    window.innerWidth <= 768 &&
+    elemDetail.children[0].classList.contains("dv-geral")
+      ? setShowSearch(false)
+      : setShowSearch(true);
+  };
+
+  const verifyTop = () => {
     let elemLeft = document.getElementById("dv-search");
     let elemRight = document.getElementById("dv-result");
+    if (window.scrollY === 0 && elemLeft !== null) {
+      elemRight.classList.remove("notop");
+      elemLeft.classList.remove("notop");
+    } else if (window.scrollY !== 0 && elemLeft !== null) {
+      elemRight.classList.add("notop");
+      elemLeft.classList.add("notop");
+    }
+  };
+
+  useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (window.scrollY === 0) {
-        elemRight.classList.remove("notop");
-        elemLeft.classList.remove("notop");
-      } else {
-        elemRight.classList.add("notop");
-        elemLeft.classList.add("notop");
-      }
+      verifyTop();
+      verifySearchElement();
     });
-  }, []);
+
+    window.addEventListener("resize", () => {
+      verifySearchElement();
+    });
+  });
+
+  useEffect(() => {
+    verifySearchElement();
+  }, [detailsId, showDetails]);
 
   return (
     <div className="dv-main">
-      <div id="dv-search" className="dv-search">
-        <form onSubmit={loadMovies} id="form-search" className="form-search">
-          <div>
-            <div>Pesquisar</div>
-            <div>O que deseja buscar?</div>
-          </div>
-          <div id="typeGroup">
-            <button
-              value="movie"
-              type="button"
-              onClick={() => selectType("movie")}
-            >
-              Filmes
-            </button>
-            <button
-              value="series"
-              type="button"
-              onClick={() => selectType("series")}
-            >
-              Séries
-            </button>
-          </div>
+      {showSearch && (
+        <div id="dv-search" className="dv-search">
+          <form onSubmit={loadMovies} id="form-search" className="form-search">
+            <div>
+              <div>Pesquisar</div>
+              <div>O que deseja buscar?</div>
+            </div>
+            <div id="typeGroup">
+              <button
+                value="movie"
+                type="button"
+                onClick={() => selectType("movie")}
+              >
+                Filmes
+              </button>
+              <button
+                value="series"
+                type="button"
+                onClick={() => selectType("series")}
+              >
+                Séries
+              </button>
+            </div>
 
-          <input
-            disabled={selectedOption === ""}
-            type="text"
-            id="btnSubmit"
-            value={nameSearch}
-            onChange={(e) => setNameSearch(e.target.value)}
-            placeholder="ex: back to the future"
-            data-filled="true"
-          />
+            <input
+              disabled={selectedOption === ""}
+              type="text"
+              id="btnSubmit"
+              value={nameSearch}
+              onChange={(e) => setNameSearch(e.target.value)}
+              placeholder="ex: back to the future"
+              data-filled="true"
+            />
 
-          <button
-            disabled={selectedOption === "" || nameSearch === "" || searching}
-            type="submit"
-            className="buttonSearch"
-            id="buttonSearch"
-          >
-            {searching ? "Buscando..." : "Buscar"}
-          </button>
-        </form>
-      </div>
+            <button
+              disabled={selectedOption === "" || nameSearch === "" || searching}
+              type="submit"
+              className="buttonSearch"
+              id="buttonSearch"
+            >
+              {searching ? "Buscando..." : "Buscar"}
+            </button>
+          </form>
+        </div>
+      )}
+
       <div id="dv-result" className="dv-result">
         {!showDetails && (
           <>

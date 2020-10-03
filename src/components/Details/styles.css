@@ -33,12 +33,59 @@
 
 .dv-geral > div:nth-child(3) {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .dv-geral > div:nth-child(3) > div {
-  flex: 1;
-  margin-left: 10px;
   line-height: 24px;
+  max-width: 500px;
+  min-width: 300px;
+  margin: 20px 0 0 0;
+  padding: 0 10px;
+}
+
+.dv-geral > div:nth-child(3) > div > div {
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+
+.dv-geral > div:nth-child(3) > div > div > strong {
+  display: flex;
+}
+
+.dv-geral > div:nth-child(3) > div > div > strong > svg {
+  font-size: 22px;
+  margin-right: 2px;
+}
+
+.dv-geral > div:nth-child(3) > div > div > p,
+.dv-geral > div:nth-child(3) > div > div > div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.dv-geral > div:nth-child(3) > div > #actors > div > a {
+  text-decoration: none;
+  background-color: #da772b;
+  padding: 0px 7px;
+  color: #fff;
+  border-radius: 14px;
+  font-weight: bold;
+  flex-wrap: nowrap;
+  display: flex;
+  width: max-content;
+  margin: 2px;
+  font-size: 12px;
+  text-shadow: 1px 1px 2px #000;
+  transition: all 0.1s;
+}
+
+.dv-geral > div:nth-child(3) > div > #actors > div > a:hover {
+  background-color: #af6024;
 }
 
 .dv-geral > p {
@@ -50,4 +97,26 @@
 
 .img-back {
   height: 350px;
+  height: 350px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 2px #da772a;
+}
+
+@media only screen and (max-width: 768px) {
+  .dv-geral > p {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .dv-geral > div:nth-child(3) > div > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .dv-geral > div:nth-child(3) > div > div > p,
+  .dv-geral > div:nth-child(3) > div > div > div {
+    justify-content: center;
+  }
 }
