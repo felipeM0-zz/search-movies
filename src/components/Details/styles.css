@@ -1,4 +1,4 @@
-.dv-geral > div:nth-child(1) {
+.dv-geral > .btn-return {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,66 +12,65 @@
   margin-bottom: 15px;
 }
 
-.dv-geral > div:nth-child(1):hover {
+.dv-geral > .btn-return:hover {
   background-color: #da552f;
   color: #fff;
 }
 
-.dv-geral > div:nth-child(1):active {
+.dv-geral > .btn-return:active {
   transition: all 0.1s;
   transform: scale(1.05, 1.05);
 }
 
-.dv-geral > div:nth-child(1) > p {
+.dv-geral > .btn-return > p {
   font-size: 15px;
   margin-left: 3px;
 }
 
-.dv-geral > div:nth-child(1) > svg {
-  font-size: 20;
+.dv-geral > .btn-return > svg {
+  font-size: 23px;
 }
 
-.dv-geral > div:nth-child(3) {
+.dv-geral > .dv-content-dt {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.dv-geral > div:nth-child(3) > div {
-  line-height: 24px;
+.dv-geral > .dv-content-dt > div {
   max-width: 500px;
   min-width: 300px;
   margin: 20px 0 0 0;
   padding: 0 10px;
 }
 
-.dv-geral > div:nth-child(3) > div > div {
+.dv-geral > .dv-content-dt > div > div {
   font-size: 17px;
   margin-bottom: 15px;
 }
 
-.dv-geral > div:nth-child(3) > div > div > strong {
+.dv-geral > .dv-content-dt > div > div > strong {
   display: flex;
 }
 
-.dv-geral > div:nth-child(3) > div > div > strong > svg {
+.dv-geral > .dv-content-dt > div > div > strong > svg {
   font-size: 22px;
   margin-right: 2px;
 }
 
-.dv-geral > div:nth-child(3) > div > div > p,
-.dv-geral > div:nth-child(3) > div > div > div {
+.dv-geral > .dv-content-dt > div > div > p,
+.dv-geral > .dv-content-dt > div > div > div {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
 }
 
-.dv-geral > div:nth-child(3) > div > #actors > div > a {
+.dv-geral > .dv-content-dt > div > #actors > div > a {
   text-decoration: none;
   background-color: #da772b;
-  padding: 0px 7px;
+  padding: 4px 7px;
   color: #fff;
   border-radius: 14px;
   font-weight: bold;
@@ -84,39 +83,41 @@
   transition: all 0.1s;
 }
 
-.dv-geral > div:nth-child(3) > div > #actors > div > a:hover {
+.dv-geral > .dv-content-dt > div > #actors > div > a:hover {
   background-color: #af6024;
 }
 
-.dv-geral > p {
+.dv-geral > .title-name {
   font-size: 25px;
   margin-bottom: 15px;
   text-transform: uppercase;
   font-weight: bold;
 }
 
-.img-back {
+.dv-content-dt > .img-back {
   height: 350px;
-  height: 350px;
+  max-width: 250px;
+  object-fit: cover;
   border-radius: 5px;
   box-shadow: 3px 3px 2px #da772a;
 }
 
 @media only screen and (max-width: 768px) {
-  .dv-geral > p {
+  .dv-geral > .title-name {
     text-align: center;
   }
 }
 
 @media only screen and (max-width: 425px) {
-  .dv-geral > div:nth-child(3) > div > div {
+  .dv-geral > .dv-content-dt > div > div {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
   }
-  .dv-geral > div:nth-child(3) > div > div > p,
-  .dv-geral > div:nth-child(3) > div > div > div {
+  .dv-geral > .dv-content-dt > div > div > p,
+  .dv-geral > .dv-content-dt > div > div > div {
     justify-content: center;
   }
 }

@@ -7,6 +7,7 @@ import WaitAction from "../../components/WaitAction";
 import NothingFd from "../../components/NothingFd";
 import ItemsList from "../../components/ItemsList";
 import Details from "../../components/Details";
+import LinearProgress from "@material-ui/core/LinearProgress";
 // EXTERNAL STYLES
 import "./styles.css";
 
@@ -27,6 +28,7 @@ const Main = () => {
   const loadMovies = async (e) => {
     e.preventDefault();
     setResults([]);
+    setShowDetails(false);
     setNotFound(false);
     setSearching(true);
 
@@ -164,7 +166,7 @@ const Main = () => {
               className="buttonSearch"
               id="buttonSearch"
             >
-              {searching ? "Buscando..." : "Buscar"}
+              {searching ? <LinearProgress /> : "Buscar"}
             </button>
           </form>
         </div>
@@ -199,7 +201,7 @@ const Main = () => {
                   setShowDetails(true);
                 }}
               />
-              )}
+            )}
           </>
         )}
         {showDetails && (

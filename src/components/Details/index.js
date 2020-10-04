@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api";
 
-import LoadingDetails from "../LoadingDetails";
-
 import KeyboardBackspaceSharp from "@material-ui/icons/KeyboardBackspaceSharp";
 import EventIcon from "@material-ui/icons/Event";
 import MovieFilterIcon from "@material-ui/icons/MovieFilter";
 import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
-
 import "./styles.css";
+
+import LoadingDetails from "../LoadingDetails";
 
 const Details = (props) => {
   const [details, setDetails] = useState({});
@@ -28,13 +27,17 @@ const Details = (props) => {
     props.returnBack();
   };
 
+  const correctYear = (year) => {
+    return year !== undefined && year.length === 5 ? year.substr(0, 4) : year;
+  };
+
   useEffect(() => {
     setLoading(true);
     const loadDetails = async () => {
       const response = await api.get("/?&apikey=ad055d30&i=" + props.detailsId);
+      setLoading(false);
       separateActors(response.data.Actors.split(", "));
       setDetails(response.data);
-      setLoading(false);
     };
 
     loadDetails();
@@ -44,24 +47,26 @@ const Details = (props) => {
     <div className="dv-geral">
       {!loading && (
         <>
-          <div onClick={() => returnList()}>
+          <div className="btn-return" onClick={() => returnList()}>
             <KeyboardBackspaceSharp />
             <p>Retornar</p>
           </div>
-          <p>{details.Title}</p>
-          <div>
-            <img
-              alt={details.Title}
-              className="img-back"
-              src={details.Poster}
-            />
+          <p className="title-name">{details.Title}</p>
+          <div className="dv-content-dt">
+            {details.Poster !== "N/A" && (
+              <img
+                alt={details.Title}
+                className="img-back"
+                src={details.Poster}
+              />
+            )}
             <div>
               <div>
                 <strong>
                   <EventIcon />
                   Ano:
                 </strong>
-                <p>{details.Year}</p>
+                <p>{correctYear(details.Year)}</p>
               </div>
               <div>
                 <strong>
@@ -87,6 +92,7 @@ const Details = (props) => {
           </div>
         </>
       )}
+
       {loading && <LoadingDetails />}
     </div>
   );

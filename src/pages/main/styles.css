@@ -109,6 +109,9 @@
   transition: all 0.2s;
   cursor: pointer;
   border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-search .buttonSearch:hover {
@@ -129,8 +132,18 @@
   cursor: no-drop;
 }
 
+.form-search .buttonSearch > div {
+  width: 50%;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.form-search .buttonSearch > div div {
+  background-color: #da552f;
+}
+
 .dv-result {
-  padding: 30px 15px;
+  padding: 30px 15px 0 15px;
   margin-left: 300px;
   flex: 1;
 }

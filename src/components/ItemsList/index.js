@@ -13,6 +13,10 @@ const ItemsList = (props) => {
   const page = parseInt(props.page);
   const [open, setOpen] = useState(false);
 
+  const correctYear = (year) => {
+    return year.length === 5 ? year.substr(0, 4) : year;
+  };
+
   return (
     <div className="movies-list">
       <div>
@@ -31,18 +35,22 @@ const ItemsList = (props) => {
             id={index}
             key={movies.imdbID}
           >
-            <div>
-              <LazyLoad>
-                <img src={movies.Poster} alt={movies.Title} />
-              </LazyLoad>
+            {movies.Poster !== "N/A" && (
+              <div className="dv-img-year">
+                <LazyLoad>
+                  <img src={movies.Poster} alt={movies.Title} />
+                </LazyLoad>
+                <p>{correctYear(movies.Year)}</p>
+              </div>
+            )}
+
+            <div className="dv-title">
               <p>
-                {movies.Year.length === 5
-                  ? movies.Year.substr(0, 4)
-                  : movies.Year}
+                {movies.Title}
+                {movies.Poster === "N/A"
+                  ? ` (${correctYear(movies.Year)})`
+                  : null}
               </p>
-            </div>
-            <div>
-              <p>{movies.Title}</p>
             </div>
           </div>
         ))}
