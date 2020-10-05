@@ -102,11 +102,28 @@
   box-shadow: 3px 3px 2px #da772a;
 }
 
+.critic-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7px;
+}
+
+.critic-top > svg {
+  font-size: 22px;
+  margin-right: 2px;
+}
+
+.critic-top > p {
+  font-weight: bold;
+  font-size: 17px;
+}
+
 .chart-review {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0 30px 0;
+  margin: 8px 0 30px 0;
   flex-direction: row;
 }
 
@@ -121,16 +138,28 @@
   font-weight: bold;
   text-align: center;
   font-size: 20px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.chart-review > div:nth-child(1) > p {
+  color: #e0ab00;
+}
+.chart-review > div:nth-child(2) > p {
+  color: #fa3306;
+}
+.chart-review > div:nth-child(3) > p {
+  color: #022330;
 }
 
 .chart-critic div > div {
   position: relative;
 }
 
-.chart-review div > div > img {
+.chart-review div > div img {
   width: 50px;
   border-radius: 50px;
   position: absolute;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.15);
 }
 
 .chart-review div > div > .chart-critic {

@@ -112,6 +112,7 @@ const Main = () => {
     });
 
     window.addEventListener("resize", () => {
+      verifyTop();
       verifySearchElement();
     });
   });

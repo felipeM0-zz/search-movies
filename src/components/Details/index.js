@@ -6,7 +6,10 @@ import EventIcon from "@material-ui/icons/Event";
 import MovieFilterIcon from "@material-ui/icons/MovieFilter";
 import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
+import AssessmentIcon from '@material-ui/icons/Assessment';
 import LoadingDetails from "../LoadingDetails";
+
+import Tooltip from "@material-ui/core/Tooltip";
 
 import rt from "../../images/PNG/rotten.png";
 import meta from "../../images/PNG/metacritic.png";
@@ -44,9 +47,11 @@ const Details = (props) => {
     let dt = dados.map((v, index) => {
       return (
         <div key={index}>
-          <p style={{ color: colors[index] }}>{v.val}%</p>
+          <p>{v.val}%</p>
           <div>
-            <img src={imgs[index]} alt={v.nome} />
+            <Tooltip title={v.nome + " (" + v.val + "%)"}>
+              <img src={imgs[index]} alt={v.nome} />
+            </Tooltip>
             <PieChart
               className="chart-critic"
               data={[{ value: v.val, color: colors[index] }]}
@@ -105,36 +110,42 @@ const Details = (props) => {
               <div>
                 <strong>
                   <EventIcon />
-                  Ano:
+                  Ano
                 </strong>
                 <p>{correctYear(details.Year)}</p>
               </div>
               <div>
                 <strong>
                   <MovieFilterIcon />
-                  Gênero(s):
+                  Gênero(s)
                 </strong>
                 <p>{details.Genre}</p>
               </div>
               <div>
                 <strong>
-                  <EmojiPeopleIcon /> Diretor(a):
+                  <EmojiPeopleIcon /> Diretor(a)
                 </strong>
                 <p>{details.Director}</p>
               </div>
               <div id="actors">
                 <strong>
                   <SupervisedUserCircleIcon />
-                  Atores:
+                  Atores
                 </strong>
                 <div></div>
               </div>
             </div>
           </div>
           {dados.length > 0 && (
-            <div className="chart-review" id="chart-review">
-              {insertCharts(dados)}
-            </div>
+            <>
+              <div className="critic-top">
+                <AssessmentIcon />
+                <p>Críticas</p>
+              </div>
+              <div className="chart-review" id="chart-review">
+                {insertCharts(dados)}
+              </div>
+            </>
           )}
         </>
       )}

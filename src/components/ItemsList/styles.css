@@ -20,7 +20,7 @@
   background-color: #ffffff;
   color: #da552f;
   padding: 4px 12px;
-  border-radius: 2px;
+  border-radius: 5px;
   border: 1px solid #da552f;
 }
 .movies-list > div:nth-child(1) > div > span {

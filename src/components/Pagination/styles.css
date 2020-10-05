@@ -11,7 +11,8 @@
 .dv-pagination > div {
   border: 1px solid #99999950;
   background-color: #fff;
-  border-radius: 2px;
+  border-radius: 5px;
+  padding: 3px;
 }
 
 .dv-pagination > div button.next,
@@ -20,28 +21,14 @@
   padding: 2px 7px;
   height: 25px;
   cursor: pointer;
-  background-color: #da542fb2;
+  background-color: #da552f;
   color: #fff;
   transition: all 0.2s;
 }
 
-.dv-pagination > div button:hover {
-  background-color: #da552f;
-}
-
-.dv-pagination > div button:active {
-  transition: all 0.1s;
-  transform: scale(1.1, 1.1);
-}
-
-.dv-pagination > div button.next {
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-}
-
+.dv-pagination > div button.next,
 .dv-pagination > div button.prev {
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
+  border-radius: 3px;
 }
 
 .dv-pagination > div span {

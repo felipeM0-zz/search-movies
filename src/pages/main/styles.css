@@ -9,6 +9,7 @@
   z-index: 2;
   transition: all 0.3s;
   border-bottom-right-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 
 .dv-search.notop {
