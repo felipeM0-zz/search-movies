@@ -8,7 +8,6 @@ import WaitAction from "../../components/WaitAction";
 import NothingFd from "../../components/NothingFd";
 import ItemsList from "../../components/ItemsList";
 import Details from "../../components/Details";
-
 // EXTERNAL STYLES
 import "./styles.css";
 

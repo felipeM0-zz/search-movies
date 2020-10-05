@@ -1,5 +1,6 @@
 import React from "react";
 import LinearProgress from "@material-ui/core/LinearProgress";
+// EXTERNAL STYLES
 import "./styles.css";
 
 const SearchForm = (props) => {

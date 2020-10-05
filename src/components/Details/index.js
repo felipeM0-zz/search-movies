@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
+import Tooltip from "@material-ui/core/Tooltip";
+import { PieChart } from "react-minimal-pie-chart";
+// EXTERNAL SERVICES
 import api from "../../services/api";
-
+// EXTERNAL ICONS
 import KeyboardBackspaceSharp from "@material-ui/icons/KeyboardBackspaceSharp";
 import EventIcon from "@material-ui/icons/Event";
 import MovieFilterIcon from "@material-ui/icons/MovieFilter";
 import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
-import AssessmentIcon from '@material-ui/icons/Assessment';
+import AssessmentIcon from "@material-ui/icons/Assessment";
+// EXTERNAL COMPONENTS
 import LoadingDetails from "../LoadingDetails";
-
-import Tooltip from "@material-ui/core/Tooltip";
-
+// EXTERNAL IMAGES
 import rt from "../../images/PNG/rotten.png";
 import meta from "../../images/PNG/metacritic.png";
 import imdb from "../../images/PNG/imdb.png";
-
-import { PieChart } from "react-minimal-pie-chart";
-
+// EXTERNAL STYLES
 import "./styles.css";
 
 const Details = (props) => {

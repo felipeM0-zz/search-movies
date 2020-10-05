@@ -1,4 +1,5 @@
 import React from "react";
+// EXTERNAL STYLES
 import "./styles.css";
 
 const Pagination = (props) => {

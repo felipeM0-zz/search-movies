@@ -1,6 +1,8 @@
 import React from "react";
-import Waiting from "../../images/JSON/waiting.json";
 import Lottie from "react-lottie";
+// EXTERNAL IMAGES
+import Waiting from "../../images/JSON/waiting.json";
+// EXTERNAL STYLES
 import "./styles.css";
 
 const WaitAction = () => {

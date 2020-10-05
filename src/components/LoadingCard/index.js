@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "../../../node_modules/placeholder-loading/src/scss/placeholder-loading.scss";
+// EXTERNAL STYLES
 import "./styles.css";
 
 const LoadingCard = () => {

@@ -1,6 +1,8 @@
 import React from "react";
 import Lottie from "react-lottie";
+// EXTERNAL IMAGES
 import NotFound from "../../images/JSON/not-found.json";
+// EXTERNAL STYLES
 import "./styles.css";
 
 const NothingFd = () => {

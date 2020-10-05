@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import LazyLoad from "react-lazyload";
-import LayersClear from "@material-ui/icons/LayersClearOutlined";
 import Tooltip from "@material-ui/core/Tooltip";
-import Pagination from "../Pagination";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
-
+// EXTERNAL ICONS
+import LayersClear from "@material-ui/icons/LayersClearOutlined";
+// EXTERNAL COMPONENTS
+import Pagination from "../Pagination";
+// EXTERNAL STYLES
 import "./styles.css";
 
 const ItemsList = (props) => {
