@@ -66,7 +66,7 @@ const ItemsList = (props) => {
           />
         )}
       <Dialog onClose={() => setOpen(false)} open={open}>
-        <DialogTitle>Descartar e limpar busca?</DialogTitle>
+        <DialogTitle>Descartar busca?</DialogTitle>
         <div className="dv-buttons-modal">
           <button onClick={() => props.clear()}>Sim</button>
           <button onClick={() => setOpen(false)}>Não</button>

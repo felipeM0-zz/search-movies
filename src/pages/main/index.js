@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 // EXTERNAL SERVICES
 import api from "../../services/api";
 // EXTERNAL COMPONENTS
+import SearchForm from "../../components/SearchForm";
 import LoadingCard from "../../components/LoadingCard";
 import WaitAction from "../../components/WaitAction";
 import NothingFd from "../../components/NothingFd";
 import ItemsList from "../../components/ItemsList";
 import Details from "../../components/Details";
-import LinearProgress from "@material-ui/core/LinearProgress";
+
 // EXTERNAL STYLES
 import "./styles.css";
 
@@ -55,17 +56,6 @@ const Main = () => {
       setNotFound(true);
       setResultCount("");
       setSearching(false);
-    }
-  };
-
-  const selectType = (type) => {
-    setSelectedOption(type);
-    let elem = document.getElementById("typeGroup");
-
-    for (let i = 0; i < elem.children.length; i++) {
-      elem.children[i].value === type
-        ? elem.children[i].classList.add("selected")
-        : elem.children[i].classList.remove("selected");
     }
   };
 
@@ -129,47 +119,14 @@ const Main = () => {
     <div className="dv-main">
       {showSearch && (
         <div id="dv-search" className="dv-search">
-          <form onSubmit={loadMovies} id="form-search" className="form-search">
-            <div>
-              <div>Pesquisar</div>
-              <div>O que deseja buscar?</div>
-            </div>
-            <div id="typeGroup">
-              <button
-                value="movie"
-                type="button"
-                onClick={() => selectType("movie")}
-              >
-                Filmes
-              </button>
-              <button
-                value="series"
-                type="button"
-                onClick={() => selectType("series")}
-              >
-                Séries
-              </button>
-            </div>
-
-            <input
-              disabled={selectedOption === ""}
-              type="text"
-              id="btnSubmit"
-              value={nameSearch}
-              onChange={(e) => setNameSearch(e.target.value)}
-              placeholder="ex: back to the future"
-              data-filled="true"
-            />
-
-            <button
-              disabled={selectedOption === "" || nameSearch === "" || searching}
-              type="submit"
-              className="buttonSearch"
-              id="buttonSearch"
-            >
-              {searching ? <LinearProgress /> : "Buscar"}
-            </button>
-          </form>
+          <SearchForm
+            loadMovies={() => loadMovies}
+            selectType={(type) => setSelectedOption(type)}
+            selectedOption={selectedOption}
+            nameSearch={nameSearch}
+            searching={searching}
+            setNameSearch={(name) => setNameSearch(name)}
+          />
         </div>
       )}
 
