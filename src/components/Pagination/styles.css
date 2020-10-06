@@ -2,7 +2,6 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
   position: fixed;
   bottom: 15px;
   right: 25px;
@@ -13,22 +12,35 @@
   background-color: #fff;
   border-radius: 5px;
   padding: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.dv-pagination > div button.next,
-.dv-pagination > div button.prev {
+.dv-pagination > div div.next,
+.dv-pagination > div div.prev {
   border: none;
-  padding: 2px 7px;
+  padding: 0px 7px;
   height: 25px;
   cursor: pointer;
   background-color: #da552f;
   color: #fff;
   transition: all 0.2s;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.dv-pagination > div button.next,
-.dv-pagination > div button.prev {
-  border-radius: 3px;
+.dv-pagination > div div.next > p,
+.dv-pagination > div div.prev > p {
+  font-size: 14px;
+}
+
+.dv-pagination > div div.next > svg,
+.dv-pagination > div div.prev > svg {
+  font-size: 21px;
+  display: none;
 }
 
 .dv-pagination > div span {
@@ -40,6 +52,23 @@
   .dv-pagination {
     width: 100%;
     right: 0;
+    bottom: 5px;
     justify-content: center;
+  }
+  .dv-pagination > div {
+    border-radius: 20px;
+  }
+  .dv-pagination > div div.next > p,
+  .dv-pagination > div div.prev > p {
+    display: none;
+  }
+  .dv-pagination > div div.next > svg,
+  .dv-pagination > div div.prev > svg {
+    display: block;
+  }
+  .dv-pagination > div div.next,
+  .dv-pagination > div div.prev {
+    padding: 2px;
+    border-radius: 15px;
   }
 }

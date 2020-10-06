@@ -1,15 +1,20 @@
+.dv-geral {
+  margin-bottom: 50px;
+}
+
 .dv-geral > .btn-return {
   display: flex;
-  justify-content: center;
-  align-items: center;
   border: 1px solid #da552f;
-  border-radius: 2px;
-  width: max-content;
+  border-radius: 25px;
   cursor: pointer;
-  padding: 3px 10px 3px 5px;
+  padding: 10px;
   transition: all 0.2s;
   color: #da552f;
-  margin-bottom: 15px;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background-color: white;
+  z-index: 2;
 }
 
 .dv-geral > .btn-return:hover {
@@ -87,11 +92,23 @@
   background-color: #af6024;
 }
 
-.dv-geral > .title-name {
-  font-size: 25px;
+.dv-geral > .dv-title-name {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   margin-bottom: 15px;
+}
+
+.dv-geral > .dv-title-name > svg {
+  font-size: 25px;
+  margin-right: 2px;
+}
+
+.dv-geral > .dv-title-name > p {
+  font-size: 25px;
   text-transform: uppercase;
   font-weight: bold;
+  text-align: center;
 }
 
 .dv-content-dt > .img-back {
@@ -123,7 +140,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 8px 0 30px 0;
+  margin: 10px 0 0 0;
   flex-direction: row;
 }
 
@@ -132,6 +149,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.chart-review div:hover {
+  transform: scale(1.03, 1.03);
+}
+
+.chart-review div:active {
+  transition: all 0.1s;
+  transform: scale(0.90, 0.90);
 }
 
 .chart-review div > p {
@@ -168,8 +196,8 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .dv-geral > .title-name {
-    text-align: center;
+  .dv-geral > .dv-title-name {
+    justify-content: center;
   }
 }
 

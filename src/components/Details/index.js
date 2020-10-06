@@ -10,6 +10,7 @@ import MovieFilterIcon from "@material-ui/icons/MovieFilter";
 import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
 import AssessmentIcon from "@material-ui/icons/Assessment";
+import AssignmentIcon from "@material-ui/icons/Assignment";
 // EXTERNAL COMPONENTS
 import LoadingDetails from "../LoadingDetails";
 // EXTERNAL IMAGES
@@ -48,18 +49,18 @@ const Details = (props) => {
       return (
         <div key={index}>
           <p>{v.val}%</p>
-          <div>
-            <Tooltip title={v.nome + " (" + v.val + "%)"}>
+          <Tooltip title={v.nome}>
+            <div>
               <img src={imgs[index]} alt={v.nome} />
-            </Tooltip>
-            <PieChart
-              className="chart-critic"
-              data={[{ value: v.val, color: colors[index] }]}
-              totalValue={100}
-              lineWidth={20}
-              rounded
-            />
-          </div>
+              <PieChart
+                className="chart-critic"
+                data={[{ value: v.val, color: colors[index] }]}
+                totalValue={100}
+                lineWidth={20}
+                rounded
+              />
+            </div>
+          </Tooltip>
         </div>
       );
     });
@@ -70,12 +71,11 @@ const Details = (props) => {
   useEffect(() => {
     setLoading(true);
     const loadDetails = async () => {
+      const dados = [];
       const response = await api.get("/?&apikey=ad055d30&i=" + props.detailsId);
       setLoading(false);
       separateActors(response.data.Actors.split(", "));
       setDetails(response.data);
-
-      const dados = [];
 
       response.data.Ratings.forEach((e) => {
         dados.push({
@@ -93,11 +93,15 @@ const Details = (props) => {
     <div className="dv-geral">
       {!loading && (
         <>
-          <div className="btn-return" onClick={() => returnList()}>
-            <KeyboardBackspaceSharp />
-            <p>Retornar</p>
+          <Tooltip title="Retornar">
+            <div className="btn-return" onClick={() => returnList()}>
+              <KeyboardBackspaceSharp />
+            </div>
+          </Tooltip>
+          <div className="dv-title-name">
+            <AssignmentIcon />
+            <p className="title-name">{details.Title}</p>
           </div>
-          <p className="title-name">{details.Title}</p>
           <div className="dv-content-dt">
             {details.Poster !== "N/A" && (
               <img

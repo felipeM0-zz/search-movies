@@ -1,4 +1,8 @@
 import React from "react";
+// EXTERNAL COMPONENTS
+import Tooltip from "@material-ui/core/Tooltip";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 // EXTERNAL STYLES
 import "./styles.css";
 
@@ -7,17 +11,23 @@ const Pagination = (props) => {
     <div className="dv-pagination">
       <div>
         {props.page > 1 && (
-          <button className="prev" onClick={() => props.prevPage()}>
-            Anterior
-          </button>
+          <Tooltip title="Anterior">
+            <div className="prev" onClick={() => props.prevPage()}>
+              <ArrowBackIcon />
+              <p>Anterior</p>
+            </div>
+          </Tooltip>
         )}
         <span>
-          pág. {props.page} de {props.math}
+          pág. <strong>{props.page}</strong> de <strong>{props.math}</strong>
         </span>
         {props.page !== props.math && (
-          <button className="next" onClick={() => props.nextPage()}>
-            Próxima
-          </button>
+          <Tooltip title="Próxima">
+            <div className="next" onClick={() => props.nextPage()}>
+              <ArrowForwardIcon />
+              <p>Próxima</p>
+            </div>
+          </Tooltip>
         )}
       </div>
     </div>
